@@ -71,10 +71,10 @@ class Map{
 
   void display(){
     for(int y=0; y<h; y++){
-      for(int x=0; x<w; x++){
-        fill( grid[x][y] ? c1 : c2 );
-        rect(x*size, y*size, size, size); 
-      }
+      line(0, y*size, width, y*size);
+    }
+    for(int x=0; x<w; x++){
+      line(x*size, 0, x*size, height);
     }
   }
 }
