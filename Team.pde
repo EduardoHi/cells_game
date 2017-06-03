@@ -1,11 +1,13 @@
 class Team{
   int id;
   ArrayList<Cell> cells;
+  ArrayList<Cell> newCells;
   color teamColor;
   
   Team(int id, color c){
     this.id = id;
     cells = new ArrayList<Cell>();
+    newCells = new ArrayList<Cell>();
     //add two cells for debbuging
     cells.add( new Cell(id) );
     cells.add( new Cell(id) );
@@ -13,11 +15,21 @@ class Team{
   }
   
   void update(){
-    
+    //test array
+    String[] options = {"WAIT", "DUPLICATE", "MOVE N", "MOVE S", "MOVE E", "MOVE W"};
     for(Cell c : cells){
-      c.behavior();
+      String option = options[(int)random(6)];
+      c.behavior(option);
     }
     
+    //add newCells to list
+    cells.addAll(newCells);
+    //clear newCells to avoid duplicates
+    newCells.clear();
+  }
+  
+  void addCell(Cell c){
+    newCells.add( c );
   }
   
   void display(){

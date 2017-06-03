@@ -2,6 +2,10 @@
 class Cell{
  int energy, x, y,teamId;
  
+ Cell(int teamId, int energy, int x, int y){
+   this.teamId = teamId;
+   this.energy = energy;
+ }
  Cell(int teamId){
    this.teamId = teamId;
    randomize();
@@ -13,10 +17,37 @@ class Cell{
    y = (int)random(Game.ROWS);
  }
  
- void behavior(){
-   //test array
-   String[] options = {"N","S","E","W"};
-   move( directions.choose( options[(int)random(4)] ) );
+ void behavior(String command){
+   String[] splitted = split(command," ");
+   
+   //ERROR
+   if(splitted.length == 0){
+     print("ERROR invalid command");
+     return;
+   }
+   
+   //DEBUGGING
+   if(energy<=0){
+     return;
+   }
+   
+   switch(splitted[0]){
+     case("MOVE"):
+       move( directions.choose(splitted[1]) );
+       break;
+     case("DUPLICATE"):
+       duplicate();
+       break;
+     case("WAIT"):
+       break;
+   }
+   
+ }
+ 
+ void duplicate(){
+   energy -= DIVISION_COST;
+   energy /= 2;
+   g.teams[teamId].addCell( new Cell(teamId, energy, x, y) );
  }
  
  void move( directions dir ){

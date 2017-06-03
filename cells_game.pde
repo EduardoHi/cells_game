@@ -1,5 +1,6 @@
 Game g;
-int MAX_ENERGY = 100;
+static final int MAX_ENERGY = 100;
+static final int DIVISION_COST = 10;
 
 void setup(){
   size(800, 800);
