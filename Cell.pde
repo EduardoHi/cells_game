@@ -15,7 +15,6 @@ class Cell{
  
  void behavior(){
    move( directions.choose( (int)random(4) ) );
-   println("( "+x+","+y+" )");
  }
  
  void move( directions dir ){
