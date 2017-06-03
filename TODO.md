@@ -2,7 +2,7 @@
 
 To-Do list:
 
- * hacer que las celulas no se puedan salir del mapa
+ * hacer que las celulas no se puedan salir del mapa (DONE?)
 
  * hacer que función choose() de clase cell trabaje con `string` y no con `int`
 
