@@ -33,10 +33,10 @@ class Cell{
  
  boolean isValid(directions dir) {
    switch (dir) {
-       case NORTH: if(y > 0) return true; else return false; 
-       case SOUTH: if(y < Game.ROWS-1) return true; else return false;
-       case EAST: if(x < Game.COLUMNS-1) return true; else return false;
-       case WEST: if(x > 0) return true; else return false;
+       case NORTH: return (y > 0);
+       case SOUTH: return (y < Game.ROWS-1);
+       case EAST: return (x < Game.COLUMNS-1);
+       case WEST: return (x > 0);
        case ERROR: print("error"); return false; 
        default: return false;
    }
