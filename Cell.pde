@@ -8,13 +8,14 @@ class Cell{
  
  void randomize(){
    energy = (int)random(MAX_ENERGY);
-   //hardcoded values for now
    x = (int)random(Game.COLUMNS);
    y = (int)random(Game.ROWS);
  }
  
  void behavior(){
-   move( directions.choose( (int)random(4) ) );
+   //test array
+   String[] options = {"N","S","E","W"};
+   move( directions.choose( options[(int)random(4)] ) );
  }
  
  void move( directions dir ){
@@ -26,8 +27,6 @@ class Cell{
        case WEST: x--; break; 
        case ERROR: print("error"); break;
      }
-   } else {
-     behavior();
    }
  }
  
@@ -44,14 +43,22 @@ class Cell{
 }
 
 enum directions {
-  NORTH, SOUTH, EAST, WEST, ERROR;
-  static directions choose(int i){
-    switch (i) {
-     case 0: return NORTH;
-     case 1: return SOUTH;
-     case 2: return EAST;
-     case 3: return WEST;
+  NORTH("N"), SOUTH("S"), EAST("E"), WEST("W"), ERROR("?");
+  
+  private directions(String s){
+    this.symbol = s;
+  }
+  
+  final String symbol;
+  
+  static directions choose(String option){
+    switch (option) {
+     case "N": return NORTH;
+     case "S": return SOUTH;
+     case "E": return EAST;
+     case "W": return WEST;
      default: return ERROR;
     }
   }
+  
 }

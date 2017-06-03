@@ -4,7 +4,7 @@ To-Do list:
 
 - [x] hacer que las celulas no se puedan salir del mapa
 
-- [ ] hacer que función choose() de clase cell trabaje con `string` y no con `int`
+- [x] hacer que función choose() de clase cell trabaje con `string` y no con `int`
 
 - [ ] crear método `duplicate()` e implementar que de alguna forma se pueda dictar desde el metodo `behavior()` con un solo string si se mueve o se duplica la celula en ese turno
  ( se me ocurre que `behavior()` reciba un string y con un switch se decida que accion toma )
