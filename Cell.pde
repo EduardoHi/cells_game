@@ -1,8 +1,9 @@
 
 class Cell{
- int energy, x, y;
+ int energy, x, y,teamId;
  
- Cell(){
+ Cell(int teamId){
+   this.teamId = teamId;
    randomize();
  }
  

@@ -1,11 +1,14 @@
 class Team{
+  int id;
   ArrayList<Cell> cells;
   color teamColor;
   
-  Team(color c){
+  Team(int id, color c){
+    this.id = id;
     cells = new ArrayList<Cell>();
-    //add just one cell
-    cells.add( new Cell() );
+    //add two cells for debbuging
+    cells.add( new Cell(id) );
+    cells.add( new Cell(id) );
     teamColor = c;
   }
   

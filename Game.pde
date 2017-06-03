@@ -1,13 +1,16 @@
 
 class Game {
   Team t1, t2;
+  Team[] teams;
   public Map map;
   public static final int COLUMNS = 20;
   public static final int ROWS = 20;
+  public static final int nTeams = 2;
   
   Game(){
-    t1 = new Team(color(30, 240, 40));
-    t2 = new Team(color(240, 30, 40));
+    teams = new Team[nTeams];
+    teams[0] = new Team(0, color(30, 240, 40));
+    teams[1] = new Team(1, color(240, 30, 40));
     map = new Map(COLUMNS, ROWS);
   }
   
@@ -18,15 +21,16 @@ class Game {
   
   void update(){
     
-    t1.update();
-    t2.update();
-    
+    for(Team t : teams)
+      t.update();
+
   }
   
   void display(){
     
-    t1.display();
-    t2.display();
+    for(Team t : teams)
+      t.display();
+      
     map.display();
     
   }
