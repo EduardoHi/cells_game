@@ -1,13 +1,15 @@
-Map map;
+Game g;
+int MAX_ENERGY = 100;
 
 void setup(){
   size(800, 800);
   
-  map = new Map(10,10);
-  background(0);
-  stroke(240);
+  g = new Game();
 }
 
 void draw(){
-  map.display();
+  background(0);
+  
+  g.run();
+  
 }
