@@ -6,5 +6,5 @@ ahí va
 5. si no se imprime `Hello World` , repetir paso 4
 
 pro tips:
-    * al escribir, no tienes que typear todo, puedes presionar TAB y se autocompleta.
-    * con las flechas puedes moverte entre el historial de comandos que has escrito en la consola.
+* al escribir, no tienes que typear todo, puedes presionar TAB y se autocompleta.
+* con las flechas puedes moverte entre el historial de comandos que has escrito en la consola.
