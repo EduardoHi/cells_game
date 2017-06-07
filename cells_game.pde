@@ -6,7 +6,7 @@ void setup(){
   size(800, 800);
   
   //frame rate decrementado para simular más lento
-  frameRate(15);
+  frameRate(2);
   
   g = new Game();
 }

@@ -5,6 +5,8 @@ class Cell{
  Cell(int teamId, int energy, int x, int y){
    this.teamId = teamId;
    this.energy = energy;
+   this.x = x;
+   this.y = y;
  }
  Cell(int teamId){
    this.teamId = teamId;
