@@ -1,34 +1,78 @@
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
 public class processTest{
 
     public static void main(String[] args){
 
-        try{
-            System.out.println("Trying to compile and run...");
+        ArrayList<File>sources = getSources();
 
-            ProcessBuilder pb = new ProcessBuilder("javac.exe", "HelloWorld.java");
-            pb.inheritIO();
+        Scanner scan = new Scanner(System.in);
+        Thread pythonThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    ProcessBuilder pb1 = new ProcessBuilder("python.exe", "helloworld.py" );
+                    Process pro1 = pb1.start();
 
-            Process comp = pb.start();
-            System.out.println("compile succesful");
+                    OutputStream stdin = pro1.getOutputStream ();
+                    InputStream stdout = pro1.getInputStream ();
 
-            pb = new ProcessBuilder("java.exe", "HelloWorld" );
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(stdout));
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin));
 
-            Process p = pb.start();
+                    String line = "";
+                    while( (line = reader.readLine()) != null)
+                        System.out.println(line +" ");
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } );
+        Thread javaThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    ProcessBuilder pb2 = new ProcessBuilder("java.exe", "HelloWorld" );
+                    Process pro2 = pb2.start();
 
-            Scanner s = new Scanner(p.getInputStream());
-           while(s.hasNext())
-               System.out.print(s.next()+" ");
-           s.close();
+                    OutputStream stdin = pro2.getOutputStream ();
+                    InputStream stdout = pro2.getInputStream ();
 
-            System.out.println("\nrun succesful");
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(stdout));
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin));
+
+                    String line = "";
+                    while( (line = reader.readLine()) != null)
+                        System.out.println(line +" ");
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } );
+
+
+        pythonThread.start();
+        javaThread.start();
+    }
+
+    static ArrayList<File> getSources(){
+        ArrayList<File> sources = new ArrayList<>();
+        File actual = new File(".");
+        for( File f : actual.listFiles()){
+            String filename = f.getName();
+            if( filename.contains(".java") || filename.contains(".py") )
+                sources.add(f);
         }
-        catch(IOException e){
-            e.printStackTrace();
-        }
+        return sources;
+    }
 
+    static void compileJava(String filename) throws IOException{
+        Process pb = new ProcessBuilder("javac.exe", filename).start();
     }
 
 }
