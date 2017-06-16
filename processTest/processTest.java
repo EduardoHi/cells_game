@@ -10,6 +10,7 @@ public class processTest{
         ArrayList<File>sources = getSources();
 
         Scanner scan = new Scanner(System.in);
+
         Thread pythonThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -54,7 +55,6 @@ public class processTest{
                 }
             }
         } );
-
 
         pythonThread.start();
         javaThread.start();

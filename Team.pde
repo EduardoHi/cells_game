@@ -1,22 +1,23 @@
 class Team{
   int id;
   ArrayList<Cell> cells;
-  ArrayList<Cell> newCells;
-  color teamColor;
+  private ArrayList<Cell> newCells;
+  private color teamColor;
+  private int cellIndex = 0;
   
   Team(int id, color c){
     this.id = id;
     cells = new ArrayList<Cell>();
     newCells = new ArrayList<Cell>();
     //add two cells for debbuging
-    cells.add( new Cell(id) );
-    cells.add( new Cell(id) );
+    cells.add( new Cell(cellIndex++, id) );
     teamColor = c;
   }
   
   void update(){
-    //test array
-    String[] options = {"WAIT", "DUPLICATE", "MOVE N", "MOVE S", "MOVE E", "MOVE W"};
+    
+    String[] options = {"WAIT", "DUPLICATE", "MOVE N", "MOVE S", "MOVE E", "MOVE W"}; //test array
+    //for each cell choose a random option for debugging purposes and send that choice to the behavior of that cell
     for(Cell c : cells){
       String option = options[(int)random(6)];
       c.behavior(option);
@@ -26,10 +27,16 @@ class Team{
     cells.addAll(newCells);
     //clear newCells to avoid duplicates
     newCells.clear();
+    
+    
+    for(Cell c : cells){
+      g.map.locations[c.x][c.y].addCell(c);
+    }
   }
   
-  void addCell(Cell c){
-    newCells.add( c );
+  
+  void addCell(int energy, int x, int y){
+    newCells.add( new Cell(cellIndex++, id, energy, x, y) );
   }
   
   void display(){
@@ -37,9 +44,11 @@ class Team{
     fill(teamColor);
     for(Cell c : cells){
       pushMatrix();
-      translate(c.x*40, c.y*40);
-      //hardcoded values for now
-      rect(0, 0, 40, 40);
+      
+      // !!! hardcoded values for now !!!
+      translate(c.x*40 + 20.5, c.y*40 + 20.5);
+      
+      ellipse(0, 0, 39, 39);
       popMatrix();
     }
   }

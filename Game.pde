@@ -21,6 +21,8 @@ class Game {
   
   void update(){
     
+    map.clearLocs();
+    
     for(Team t : teams)
       t.update();
 
@@ -28,10 +30,10 @@ class Game {
   
   void display(){
     
+    map.display();
+    
     for(Team t : teams)
       t.display();
-      
-    map.display();
     
   }
   

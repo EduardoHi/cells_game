@@ -1,14 +1,16 @@
 
 class Cell{
- int energy, x, y,teamId;
+ private int energy, x, y, teamId, id;
  
- Cell(int teamId, int energy, int x, int y){
+ Cell(int id, int teamId, int energy, int x, int y){
+   this.id = id;
    this.teamId = teamId;
    this.energy = energy;
    this.x = x;
    this.y = y;
  }
- Cell(int teamId){
+ Cell(int id, int teamId){
+   this.id = id;
    this.teamId = teamId;
    randomize();
  }
@@ -29,7 +31,7 @@ class Cell{
    }
    
    //DEBUGGING
-   if(energy<=0){
+   if(energy<=0 ){
      return;
    }
    
@@ -49,7 +51,7 @@ class Cell{
  void duplicate(){
    energy -= DIVISION_COST;
    energy /= 2;
-   g.teams[teamId].addCell( new Cell(teamId, energy, x, y) );
+   g.teams[teamId].addCell( energy, x, y );
  }
  
  void move( directions dir ){
