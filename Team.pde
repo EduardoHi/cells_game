@@ -28,10 +28,15 @@ class Team{
     //clear newCells to avoid duplicates
     newCells.clear();
     
-    
+    //add cells to locations in the map
     for(Cell c : cells){
-      g.map.locations[c.x][c.y].addCell(c);
+      Location l = g.map.locations[c.x][c.y]; 
+      l.addCell(c);
+      if(l.isEnergySource)
+        c.feed();
     }
+    
+    
   }
   
   

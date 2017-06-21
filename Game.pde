@@ -25,7 +25,7 @@ class Game {
     
     for(Team t : teams)
       t.update();
-
+    
   }
   
   void display(){

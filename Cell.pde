@@ -66,6 +66,12 @@ class Cell{
    }
  }
  
+ void feed(){
+   println("cell feeding " + energy);
+   energy += ENERGY_RATE;
+   println("cell fed " + energy);
+ }
+ 
  boolean isValid(directions dir) {
    switch (dir) {
        case NORTH: return (y > 0);
