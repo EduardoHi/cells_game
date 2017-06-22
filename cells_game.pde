@@ -1,8 +1,9 @@
 Game g;
 final int MAX_ENERGY = 100;
 final int DIVISION_COST = 10;
+final int MOVE_COST = 1;
 final float ENERGY_SOURCE_PROB = 0.05;
-final int ENERGY_RATE = 2;
+final int ENERGY_RATE = 5;
 
 boolean debugView = false;
 boolean paused = false;
@@ -29,37 +30,19 @@ void draw(){
   if(debugView)
     showLocInfo();
   
-  for(Location[] ls : g.map.locations){
-    for( Location l : ls)
-      print(l.isEnergySource ? "E ":"* " );
-    print("\n");
-  }
-  println("______________________________");
   //println("fps: " + frameRate);
 }
-
-void keyPressed(){
-  if(key == 'd')
-    debugView = !debugView;
-  else if(keyCode == ' ')
-    paused = !paused;
-  else if(key == 'r')
-    g = new Game();
-  else if(key == 'n')
-    g.update();
-}
-
 
 void showLocInfo(){
   int mx = mouseX/g.map.w_size;
   int my = mouseY/g.map.h_size;
   mx = max(min(mx,Game.COLUMNS),0);
   my = max(min(my,Game.ROWS),0);
-  Location l = g.map.locations[mx][my];
+  Location l = g.map.locations[my][mx];
   
   push();
   translate(mouseX, mouseY);
-  if( width - mouseX < 100 ) translate(-180, 0);
+  if( width - mouseX < 180 ) translate(-180, 0);
   if( height - mouseY < 100 ) translate(0, -100);
   fill(255, 150);
   noStroke();
@@ -78,8 +61,6 @@ void showLocInfo(){
 
 }
 
-
-
 void push(){
    pushMatrix();
    pushStyle();
@@ -87,4 +68,15 @@ void push(){
 void pop(){
   popMatrix();
   popStyle();
+}
+
+void keyPressed(){
+  if(key == 'd' || key == 'D')
+    debugView = !debugView;
+  else if(keyCode == ' ')
+    paused = !paused;
+  else if(key == 'r' || key == 'R')
+    g = new Game();
+  else if(key == 'n' || key == 'N')
+    g.update();
 }

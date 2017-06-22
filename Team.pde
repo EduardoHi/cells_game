@@ -30,7 +30,7 @@ class Team{
     
     //add cells to locations in the map
     for(Cell c : cells){
-      Location l = g.map.locations[c.x][c.y]; 
+      Location l = g.map.locations[c.y][c.x]; 
       l.addCell(c);
       if(l.isEnergySource)
         c.feed();
