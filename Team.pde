@@ -39,6 +39,7 @@ class Team{
     
   }
   
+  //void output
   
   void addCell(int energy, int x, int y){
     newCells.add( new Cell(cellIndex++, id, energy, x, y) );

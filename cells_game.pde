@@ -11,7 +11,7 @@ boolean paused = false;
 void setup(){
   size(800, 800);
   
-  //frame rate decrementado para simular más lento
+  //cambiar framerate si se quiere cambiar la velocidad de simulacion
   //frameRate(2);
   
   g = new Game();
